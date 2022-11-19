@@ -1,4 +1,6 @@
 % a state transition matrix example
+% Usando matriz canónica para facilitar contas
+%    1   2   4   3 5
 H = [0.8 0   0.3 0 0
      0.2 0.6 0.2 0 0
      0   0.1 0.4 0 0
@@ -30,7 +32,7 @@ for i = 1:N
     numPassosInitState2 = numPassosInitState2 + length(a);
 end
 
-numPassosInitState3 = 0;
+numPassosInitState4 = 0;
 for i = 1:N
     a = crawl(H, 3, [4 5]);
     if a(length(a)) == 4
@@ -38,11 +40,11 @@ for i = 1:N
     else
         endS5 = endS5 + 1;
     end  
-    numPassosInitState3 = numPassosInitState3 + length(a);
+    numPassosInitState4 = numPassosInitState4 + length(a);
 end
 fprintf('Nº médio passos para absorção partindo estado 1 é: %.4f\n',numPassosInitState1/N);
 fprintf('Nº médio passos para absorção partindo estado 2 é: %.4f\n',numPassosInitState2/N);
-fprintf('Nº médio passos para absorção partindo estado 4 é: %.4f\n',numPassosInitState3/N);
+fprintf('Nº médio passos para absorção partindo estado 4 é: %.4f\n',numPassosInitState4/N);
 fprintf('Prob(estado3) = %f, Prob(estado 5) = %f\n',endS3/(N*3),endS5/(N*3));
 
 %b)
@@ -63,7 +65,7 @@ for i = 1:N
         min = length(a{i});
     end
 end
-fprintf('Comp mín = %f, Comp máx = %f\n',min,max);
+fprintf('Comp mín = %f, Comp máx = %f\n',min-1,max-1);
 
 % how to use crawl()
 % state = crawl(H, 1, [4 5]);
