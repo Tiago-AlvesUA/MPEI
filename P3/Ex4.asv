@@ -1,0 +1,16 @@
+%a)
+%        A      B    C     D
+T = [  0.16   0.36  0.24  0.24
+        0      0     0     1
+        0      0     0     1
+       0.36   0.24  0.24  0.16];
+
+
+%b)
+x = [1 0 0 0]';
+iteracoes = [5 10 100 200];
+y = zeros(1,4);
+for i = 1:lenght(iteracoes)
+    y = T^iteracoes(i) * x;
+    fprintf('Para %d iteracoes a prob de estar em A')
+end

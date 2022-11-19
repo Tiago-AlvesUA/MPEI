@@ -1,0 +1,21 @@
+2 acontecimentos são independentes se P(A ∩ B) = P(A)P(B)
+P(A) = 4/36
+        1   2   3   4   5   6
+    1   
+    2                   
+    3                       9
+    4                   9
+    5               9
+    6           9
+<------------------------------->
+P(B) = 18/36 
+        1   2   3   4   5   6  (2ºlança.)
+    1       .       .       .
+    2       .       .       .               
+    3       .       .       x                
+    4       .       .       .      
+    5       .       x       .   
+    6       .       .       .
+e
+P(AB) = 2/36 = 0,055 (marcações com x)
+Como P(A)xP(B) = 0,055 A e B são independentes.

@@ -1,0 +1,9 @@
+p = 0.5;
+N = 1e5;
+n = 2;
+rapaz = rand(n,N) > p;
+umrapaz = sum(rapaz(1,:)==1);
+doisrapaz = sum(rapaz==2);
+% 2 acontecimentos
+prob = sum(umrapaz)/sum(doisrapaz);
+disp(prob);

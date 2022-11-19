@@ -1,0 +1,9 @@
+E[X] -> valor médio (ou média, ou valor esperado)
+
+Variância
+var(X) = E[(X - E[X])^2] = E[X^2] - E^2[X]
+
+var_X = sum(px * (x^2)) - (sum(px*x))^2
+      = px*(x^2)' - (px*x')^2
+
+desvio padrão = sqrt(var(x))

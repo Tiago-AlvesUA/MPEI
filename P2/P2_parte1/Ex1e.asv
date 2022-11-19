@@ -1,0 +1,9 @@
+p = 0.5;
+N = 1e5;
+n = 5;
+filhos = rand(n,N) > p;
+umoumais = sum(filhos)>=1;
+doisrapaz = sum(filhos)==2;
+% 2 acontecimentos
+prob = sum(doisrapaz & umoumais)/sum(umoumais);
+disp(prob);
