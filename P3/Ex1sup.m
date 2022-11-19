@@ -57,14 +57,26 @@ end
 
 min = intmax;
 max = intmin;
+% for i = 1:N
+%     if length(a{i}) > max
+%         max = length(a{i});
+%     end
+%     if length(a{i}) < min
+%         min = length(a{i});
+%     end
+% end
+% 
+% OU
+lengths = cellfun('length' , a);
 for i = 1:N
-    if length(a{i}) > max
-        max = length(a{i});
+    if lengths(i) > max
+        max = lengths(i);
     end
-    if length(a{i}) < min
-        min = length(a{i});
+    if lengths(i) < min
+        min = lengths(i);
     end
 end
+
 fprintf('Comp mín = %f, Comp máx = %f\n',min,max);
 
 % how to use crawl()
