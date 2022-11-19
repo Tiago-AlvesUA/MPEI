@@ -65,7 +65,7 @@ for i = 1:N
         min = length(a{i});
     end
 end
-fprintf('Comp mín = %f, Comp máx = %f\n',min-1,max-1);
+fprintf('Comp mín = %f, Comp máx = %f\n',min,max);
 
 % how to use crawl()
 % state = crawl(H, 1, [4 5]);
