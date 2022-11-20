@@ -1,4 +1,4 @@
-% a state transition matrix example
+%% a
 % Usando matriz canónica para facilitar contas
 %    1   2   4   3 5
 H = [0.8 0   0.3 0 0
@@ -12,47 +12,47 @@ endS3 = 0;
 endS5 = 0;
 numPassosInitState1 = 0;
 for i = 1:N
-    a = crawl(H, 1, [4 5]);
-    if a(length(a)) == 4
-        endS3 = endS3 + 1; 
+    c = crawl(H, 1, [4 5]); % Retorna caminho até um dos estados absorventes
+    if c(length(c)) == 4
+        endS3 = endS3 + 1;
     else
         endS5 = endS5 + 1;
-    end    
-    numPassosInitState1 = numPassosInitState1 + length(a);
+    end
+    numPassosInitState1 = numPassosInitState1 + length(c);
 end
-
 numPassosInitState2 = 0;
 for i = 1:N
-    a = crawl(H, 2, [4 5]);
-    if a(length(a)) == 4
-        endS3 = endS3 + 1; 
+    c = crawl(H, 2, [4 5]); 
+    if c(length(c)) == 4
+        endS3 = endS3 + 1;
     else
         endS5 = endS5 + 1;
-    end    
-    numPassosInitState2 = numPassosInitState2 + length(a);
+    end
+    numPassosInitState2 = numPassosInitState2 + length(c);
 end
-
 numPassosInitState4 = 0;
 for i = 1:N
-    a = crawl(H, 3, [4 5]);
-    if a(length(a)) == 4
-        endS3 = endS3 + 1; 
+    c = crawl(H, 3, [4 5]); 
+    if c(length(c)) == 4
+        endS3 = endS3 + 1;
     else
         endS5 = endS5 + 1;
-    end  
-    numPassosInitState4 = numPassosInitState4 + length(a);
+    end
+    numPassosInitState4 = numPassosInitState4 + length(c);
 end
-fprintf('Nº médio passos para absorção partindo estado 1 é: %.4f\n',numPassosInitState1/N);
-fprintf('Nº médio passos para absorção partindo estado 2 é: %.4f\n',numPassosInitState2/N);
-fprintf('Nº médio passos para absorção partindo estado 4 é: %.4f\n',numPassosInitState4/N);
+
+fprintf('Nº médio passos para absorção partindo estado 1 é: %.4f\n',(numPassosInitState1/N)-1);
+fprintf('Nº médio passos para absorção partindo estado 2 é: %.4f\n',(numPassosInitState2/N)-1);
+fprintf('Nº médio passos para absorção partindo estado 4 é: %.4f\n',(numPassosInitState4/N)-1);
+% NumPassos - 1 porque o estado de absorção não conta
 fprintf('Prob(estado3) = %f, Prob(estado 5) = %f\n',endS3/(N*3),endS5/(N*3));
 
-%b)
+%% b
 N = 1e5;
 a = cell(N,1);
 for i = 1:N
     a(i) = {crawl(H, 1, [4 5])};
-    % disp(length(a{i})); -> a{i} PARA ACEDER AO CONTEÚDO DOS ARRAYS
+    % disp(length(a{i})); % a{i} PARA ACEDER AO CONTEÚDO DOS ARRAYS
 end
 
 min = intmax;
@@ -67,7 +67,7 @@ max = intmin;
 % end
 % 
 % OU
-lengths = cellfun('length' , a);
+lengths = cellfun('length',a);
 for i = 1:N
     if lengths(i) > max
         max = lengths(i);
@@ -77,10 +77,11 @@ for i = 1:N
     end
 end
 
-fprintf('Comp mín = %f, Comp máx = %f\n',min,max);
+fprintf('Comprimento mín: %d, comprimento máx: %d\n',min,max);
 
+%% crawl
 % how to use crawl()
-% state = crawl(H, 1, [4 5]);
+% state = crawl(H, 1, 3); -> 1 é first state e 3 last state
 % Note:
 % if the Markov chain has more than 1 absorbing state the third argument
 % must be a vector with the absorbing states
