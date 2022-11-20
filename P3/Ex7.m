@@ -42,7 +42,7 @@ disp(r)
 %d)
 A = 0.8*H + 0.2*(1/6*ones(6));
 r = [1/6 1/6 1/6 1/6 1/6 1/6]';
-for i=1:10
+for i=0:10
     r = A*r;
 end
 disp(r)
@@ -50,6 +50,7 @@ disp(r)
 %e)
 r = [1/6 1/6 1/6 1/6 1/6 1/6]';
 for i=1:20
+    disp(i)
     r = A*r;
 end
 disp(r)
