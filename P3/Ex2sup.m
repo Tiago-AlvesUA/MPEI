@@ -1,4 +1,4 @@
-%a)
+%% a
 %    9   1   3   5   3   9   FIM
 T = [0   0   0   0   0   0   0
      0.5 0   0   0   0   0   0
@@ -8,35 +8,34 @@ T = [0   0   0   0   0   0   0
      0   1/3 0.4 0.3 0   0.3 0
      0   0   0   0.2 0.3 0.4 0];
 
-%b)  7 dígitos iniciada por 91 e terminada em 9
-%c)  7 dígitos iniciada por 91
+%% b e c
 N = 1e5;
 a = cell(N,1);
 for i = 1:N
-    a(i) = {crawl(T, 1, 7)}; %Preencher cell array com sequências
+    a(i) = {crawl(T, 1, 7)};
 end
 
-lengths = cellfun('length' , a);
+lengths = cellfun('length',a);
 cont = 0;
 cont2 = 0;
-for i = 1:N
-    b = a{i};
-    if lengths(i) == 8 && b(2) == 2 && b(7) == 6  %length 8 porque estado 7 não conta
-        %disp(b);  -> Confirmar seq correta
+for i=1:N
+    b = a{i}; % Vai buscar o conteúdo
+    if lengths(i) == 8 && b(2) == 2 && b(7) == 6
+        %disp(b); % -> Confirmar seq correta
         cont = cont + 1;
     end
-    if lengths(i) == 8 && b(2) == 2 
+    if lengths(i) == 8 && b(2) == 2
         %disp(b);
         cont2 = cont2 + 1;
     end
 end
 
 res = cont/N;
-fprintf('A probabilidade de 7 dig iniciada por 91 e terminada em 9 é %f\n',res);
 res2 = cont2/N;
+fprintf('A probabilidade de 7 dig iniciada por 91 e terminada em 9 é %f\n',res);
 fprintf('A probabilidade de 7 dig iniciada por 91 é %f\n',res2);
 
-%CRAWL
+%% CRAWL
 function [state] = crawl(H, first, last)
     % the sequence of states will be saved in the vector "state"
     % initially, the vector contains only the initial state:
