@@ -1,78 +1,49 @@
-%a) 
-T = [0.7 0.2 0.1
-     0.2 0.3 0.5
-     0.3 0.3 0.4]';
-%Invertemos para sum *das colunas* dar 1
+%% a
+T = [0.7 0.2 0.3
+     0.2 0.3 0.3
+     0.1 0.5 0.4];
 
-%b)
-% p(sol) * p(sol->sol) * p(sol->sol)
+%% b
+prob = 1*T(1,1)*T(1,1);
+fprintf("b) %f\n\n",prob);
 
-fprintf("b)")
-res_b = 1*T(1,1)*T(1,1); 
-disp(res_b)
+%% c
+x1 = [1 0 0]'; %Começa com sol
+y2 = T*x1; %Probs dia 2 sendo que esteve sol no 1
 
-%c)
-x = [0.7 0.2 0]'; %(só queremos coluna começa em sol)
- %dá-nos as probabilidades tendo em conta que começamos em sol
-w = T*x;
-z = w/(0.7 + 0.2); %no segundo dia so pode estar sol ou nuvens
-disp(z)
-y = T*w;
+x2 = [0.7 0.2 0]'; %Segundo dia sem chover tendo em conta que começou em sol
+x2 = x2/sum(x2); %Para que soma das probs dê 1
+y3 = T*x2; %Probs dia 3 sendo que não choveu no 2
 
-% P(não chove 3|não chove 2) = P(n chove 2|n chove3) * P(n chove 2) / P(n
-% chove 3)
-fprintf("c)")
-res_c = 1 * (w(1)+w(2)) * (y(1)+y(2));
-disp(res_c)
+prob = 1*(y2(1)+y(2))*(y3(1)+y3(2));
+fprintf("c) %f\n\n",prob);
 
-% probsDia2 = T*x;
-% probNaoChoveDia2 = probsDia2(1) + probsDia2(2);
-% probsDia3 = T^2*x2;
-% disp(probsDia3)
-
-%d)
+%% d
 x = [1 0 0]';
-fprintf('Qnd primeiro dia é sol no fim de Janeiro houve:\n');
-somaSol = x(1);
-somaNuvens = x(2);
-somaChuva = x(3);
+countSol = x(1);
+countNuvens = x(2);
+countChuva = x(3);
 for i = 2:31
     x = T*x;
-    somaSol = somaSol + x(1);
-    somaNuvens = somaNuvens + x(2);
-    somaChuva = somaChuva + x(3);
+    countSol = countSol + x(1);
+    countNuvens = countNuvens + x(2);
+    countChuva = countChuva + x(3);
 end
-fprintf('%.2f dias de Sol\n %.2f dias de Nuvens\n %.2f dias de Chuva\n', somaSol,somaNuvens, somaChuva);
-%f)
-fprintf('A pessoa vai ter dores durante %.1f dias\n\n',somaSol * 0.1 + somaNuvens*0.3 + somaChuva*0.5);
+fprintf('d) %.2f dias de Sol\n %.2f dias de Nuvens\n %.2f dias de Chuva\n',countSol,countNuvens,countChuva);
+fprintf('f) Vai ter dores %.1f dias\n\n',0.1*countSol + 0.3*countNuvens + 0.5*countChuva);
 
-%e)
+%% e
 x = [0 0 1]';
-fprintf('Qnd primeiro dia é chuva no fim de Janeiro houve:\n');
-somaSol = x(1);
-somaNuvens = x(2);
-somaChuva = x(3);
+countSol = x(1);
+countNuvens = x(2);
+countChuva = x(3);
 for i = 2:31
     x = T*x;
-    somaSol = somaSol + x(1);
-    somaNuvens = somaNuvens + x(2);
-    somaChuva = somaChuva + x(3);
+    countSol = countSol + x(1);
+    countNuvens = countNuvens + x(2);
+    countChuva = countChuva + x(3);
 end
-fprintf('%.2f dias de Sol\n %.2f dias de Nuvens\n %.2f dias de Chuva\n', somaSol,somaNuvens, somaChuva);
-%f)
-fprintf('A pessoa vai ter dores durante %.1f dias\n\n',somaSol * 0.1 + somaNuvens*0.3 + somaChuva*0.5);
+fprintf('e) %.2f dias Sol\n %.2f Nuvens\n %.2f Chuva\n',countSol,countNuvens,countChuva);
+fprintf('f) Vai ter dores %.1f dias\n\n',0.1*countSol + 0.3*countNuvens + 0.5*countChuva);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+%% f -> ACIMA na d) e e)
