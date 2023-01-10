@@ -7,7 +7,7 @@ udata=load('u.data'); % Carrega o ficheiro dos dados dos filmes
 u= udata(1:end,1:2); clear udata;
 
 % Lista de utilizadores
-users = unique(u(:,1)); % Extrai os IDs dos utilizadores
+users = unique(u(:,1)); % Extrai os IDs dos utilizadores, sem repetições
 Nu= length(users); % Numero total de utilizadores
 
 % Constroi a lista de filmes para cada utilizador
@@ -20,7 +20,6 @@ for n = 1:Nu % Para cada utilizador
 end
 
 %% Calcula a distancia de Jaccard entre todos os pares pela definicao.
-
 J=zeros(Nu); % array para guardar distancias
 h= waitbar(0,'Calculating');
 for n1 = 1:Nu

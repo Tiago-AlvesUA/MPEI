@@ -1,7 +1,6 @@
 [users,Set] = createSet('u.data');  
 
 distances = jaccardDistance(users,Set);
-
 threshold = 0.4;
 similarPairs = getSimilarities(users,distances,threshold);
 
