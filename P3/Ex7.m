@@ -52,9 +52,19 @@ fprintf('d)\n');
 disp(r);
 
 %% e
-r = [1/6 1/6 1/6 1/6 1/6 1/6]';
-for i=1:20
-    r = A*r;
+eps = 1e-4;
+r = (1/6*ones(1,6))';
+xNew = r;
+iter = 1;
+while 1
+    xOld = xNew;
+    xNew = A^iter*r;
+    if(max(abs(xNew-xOld)) < eps)
+        break;
+    end
+    iter = iter + 1;
 end
-fprintf('e)\n');
-disp(r)
+disp(xNew)
+fprintf('Foram precisas %d iteracoes\n',iter)
+
+
