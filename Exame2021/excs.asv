@@ -75,8 +75,10 @@ fprintf('2a) A probabilidade de estar no estado 4 é %.4f\n',x(4));
 
 %b)
 % continuar sempre no estado 2
-prob2 = 1*T(2,2)^5;
-
+prob = 1*T(2,2)
+for i = 1:5
+    prob = prob*T(2,2);
+end
 fprintf('2b) Prob manter-se no estado 2 nas 5 1ªs transicoes: %.4f\n\n',prob)
 
 % EXERCÍCIO 3
@@ -181,7 +183,7 @@ function member= IsMember(BF,chave,k)
     end
     for i= k:-1:1
         h= mod(31*h+i,2^32-1);
-        % Se nas posições mapeadas pela fc de dispersao o valor for 0
+        % Se para as posições mapeadas pela fc de dispersao o valor for 0
         % entao o elemento nao pertence ao BF
         if(BF(mod(h,nBF)+1) == 0)
             member = false;
